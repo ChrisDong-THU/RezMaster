@@ -55,4 +55,4 @@ RELEASE_URL = "https://github.com/ChrisDong-THU/RezMaster/releases"
 
 cfg = Config()
 cfg.themeMode.value = Theme.AUTO
-qconfig.load('app/config/config.json', cfg)
+qconfig.load('config/config.json', cfg)
