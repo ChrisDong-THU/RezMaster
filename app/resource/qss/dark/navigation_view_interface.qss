@@ -1,0 +1,23 @@
+PivotInterface QLabel,
+TabInterface QLabel {
+    padding-left: 10px;
+    font: 14px 'Segoe UI', 'Microsoft YaHei', 'PingFang SC';
+    color: white;
+}
+
+#settingWidget {
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.09);
+}
+
+#bottomWidget {
+    background-color: rgba(255, 255, 255, 0.09);
+    border-top: 1px solid rgb(36, 36, 36);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+#resultWidget {
+    border: none;
+    background-color: transparent;
+}
