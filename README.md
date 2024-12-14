@@ -61,3 +61,4 @@ RezMaster is released under [GPLv3](./LICENSE) license.
 # Acknowledgments
 - [PyQt-Fluent-Widgets](https://qfluentwidgets.com/)
 - [PyQtImageViewer](https://github.com/marcel-goldschen-ohm/PyQtImageViewer)
+- [PyStand](https://github.com/skywind3000/PyStand)
