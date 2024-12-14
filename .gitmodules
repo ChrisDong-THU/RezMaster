@@ -1,0 +1,3 @@
+[submodule "app/functions/SR"]
+	path = app/functions/SR
+	url = https://github.com/MysticFace-0/XiuLowLevel.git
