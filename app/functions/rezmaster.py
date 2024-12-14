@@ -1,5 +1,5 @@
 import os
-from .SR.sr_api import SR, load_image
+from .SR import SR, load_image
 
 
 class RezMaster:
