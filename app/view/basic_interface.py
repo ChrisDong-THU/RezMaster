@@ -157,8 +157,9 @@ class BasicInterface(GalleryInterface):
             self.tab.addTabInterface()
         
         self.currentTabIndex = self.tab.stackedWidget.currentIndex()
-        self.tab.tabBar.setTabText(self.currentTabIndex, self.tr('Processing...'))
-        self.tab.stackedWidget.widget(self.currentTabIndex).set_busy()
+        widget = self.tab.stackedWidget.widget(self.currentTabIndex)
+        widget.set_busy()
+        self.tab.tabBar.tab(widget.objectName()).setText(self.tr('Processing...'))
         
         self.run_thread.ops = RunMode.PROCESS
         self.run_thread.start()
@@ -192,8 +193,9 @@ class BasicInterface(GalleryInterface):
         self.createSuccessInfo(caption+self.tr(' Done.'))
         
         pix = self.img2pix(result)
-        self.tab.tabBar.setTabText(self.currentTabIndex, caption)
-        self.tab.stackedWidget.widget(self.currentTabIndex).set_image(pix)
+        widget = self.tab.stackedWidget.widget(self.currentTabIndex)
+        widget.set_image(pix)
+        self.tab.tabBar.tab(widget.objectName()).setText(caption)
         self.setBtnStatus(True)
     
     @staticmethod
