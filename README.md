@@ -31,15 +31,16 @@
 # Installation
 1. Create a conda environment.
    ```shell
-   conda create -n qt python=3.9.18
+   conda create -n qt python=3.9.13
    ```
 2. Install the dependent packages.
    ```shell
    pip install -r requirements.txt
+   pip install -r requirements-extra.txt
    ```
 3. Download the model file and unzip it to the model folder.
 
-> **Note**: To achieve faster model inference speed, it is necessary to properly configure the CUDA environment. For further development, some additional packages should be installed, such as `PyQt5-tools`. 
+> **Note**: Please first modify `requirements-extra.txt` for appropriate Pytorch version according to the CUDA. For further development, it is necessary to install some additional packages, such as `PyQt5-tools`. 
 
 # Quickstart
 1. Simply run the script.
