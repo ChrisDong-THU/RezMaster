@@ -210,7 +210,7 @@ class BasicInterface(GalleryInterface):
         self.run_thread.rez.set_image(path)
         pix = self.img2pix(self.run_thread.rez.raw_image)
         self.tab.rawInterface.set_image(pix)
-        self.tab.tabBar.setTabText(0, self.tr('Raw Image ')+'-'+get_pix_size(pix))
+        self.tab.tabBar.tab('tabRawInterface').setText(self.tr('Raw Image ')+'-'+get_pix_size(pix))
     
     @noscroll
     def createErrorInfor(self, message, *args, **kwargs):
