@@ -3,7 +3,7 @@ from PyQt5.QtCore import Qt, QSize, QVariant, QStandardPaths
 from PyQt5.QtWidgets import QFileDialog, QWidget, QVBoxLayout, QButtonGroup, QStackedWidget
 from PyQt5.QtGui import QPixmap, QImage
 from PyQt5.QtCore import QThread, pyqtSignal
-from qfluentwidgets import (IndeterminateProgressBar, PushButton, SplitPushButton, FluentIcon, DoubleSpinBox, InfoBar, InfoBarPosition, RoundMenu, Action)
+from qfluentwidgets import (qrouter, IndeterminateProgressBar, PushButton, SplitPushButton, FluentIcon, DoubleSpinBox, InfoBar, InfoBarPosition, RoundMenu, Action)
 
 from .gallery_interface import GalleryInterface
 from .utils import ModelType, DataType, RunMode
@@ -72,7 +72,7 @@ class BasicInterface(GalleryInterface):
         self.run_thread = WorkerThread()
         
         self.tab = TabInterface(self)
-        self.currentTabIndex = None
+        self.currentTabObj = None
         card = self.addExampleCard(
             self.tr('Image Gallery'),
             widget=self.tab,
@@ -156,10 +156,9 @@ class BasicInterface(GalleryInterface):
         if self.tab.stackedWidget.currentWidget().objectName() == 'tabRawInterface':
             self.tab.addTabInterface()
         
-        self.currentTabIndex = self.tab.stackedWidget.currentIndex()
-        widget = self.tab.stackedWidget.widget(self.currentTabIndex)
-        widget.set_busy()
-        self.tab.tabBar.tab(widget.objectName()).setText(self.tr('Processing...'))
+        self.currentTabObj = self.tab.tabBar.currentTab().routeKey()
+        self.tab.findChild(QWidget, self.currentTabObj).set_busy()
+        self.tab.tabBar.tab(self.currentTabObj).setText(self.tr('Processing...'))
         
         self.run_thread.ops = RunMode.PROCESS
         self.run_thread.start()
@@ -193,9 +192,8 @@ class BasicInterface(GalleryInterface):
         self.createSuccessInfo(caption+self.tr(' Done.'))
         
         pix = self.img2pix(result)
-        widget = self.tab.stackedWidget.widget(self.currentTabIndex)
-        widget.set_image(pix)
-        self.tab.tabBar.tab(widget.objectName()).setText(caption)
+        self.tab.findChild(QWidget, self.currentTabObj).set_image(pix)
+        self.tab.tabBar.tab(self.currentTabObj).setText(caption)
         self.setBtnStatus(True)
     
     @staticmethod
